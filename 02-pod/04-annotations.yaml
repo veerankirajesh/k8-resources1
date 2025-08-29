@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: labels-demo
+  name: annotations
   labels:
     course: DevOps
     trainer: kanth
