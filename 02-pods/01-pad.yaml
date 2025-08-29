@@ -1,0 +1,12 @@
+apiversion: v1
+kind: Pod
+metadata:
+ name: hello world
+spec:
+#list of container
+  container:
+  - name: hello world
+    images: nginx
+    ports:
+    - containerPort: 80
+  
