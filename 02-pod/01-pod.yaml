@@ -4,6 +4,7 @@ metadata:
  name: hello world
 spec:
 #list of container
+
   container:
   - name: hello world
     images: nginx
