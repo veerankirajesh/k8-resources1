@@ -7,6 +7,7 @@ metadata:
    trainer: kanth
    duration: "120"
 spec:
+
   containers:
   - name: nginx
     image: nginx

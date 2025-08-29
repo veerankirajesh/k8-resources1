@@ -11,6 +11,7 @@ metadata:
     build: k8-resources
     description: "This pod runs nginx with annotations example"
 spec:
+
   containers:
   - name: nginx
     image: nginx
