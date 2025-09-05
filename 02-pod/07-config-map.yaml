@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: devops-config
+data:
+  course: devops
+  trainer: "Kanth" 
