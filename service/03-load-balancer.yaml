@@ -20,8 +20,8 @@ spec:
   type: LoadBalancer   # External Load Balancer
   selector:
     app: nginx-loadbalancer
-    demo: service   
-    ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+    demo: service
+  ports:
+  - protocol: TCP
+    port: 80        # Service Port
+    targetPort: 80  # Container Port
