@@ -19,3 +19,9 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
+    app: nginx-lb
+    demo: service
+  ports:
+  - protocol: TCP
+    port: 80        # Service port
+    targetPort: 80  # Pod container port
