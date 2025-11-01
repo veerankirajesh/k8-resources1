@@ -18,13 +18,13 @@ metadata:
     demo: ebs-dynamic
 spec:
   containers:
-  - name: nginx
+  - name: nginx  
     image: nginx
     volumeMounts:
     - name: nginx-data
       mountPath: /usr/share/nginx/html
   nodeSelector:
-    zone: 1d
+    topology.kubernetes.io/zone: us-east-1d    # ✅ Matches AWS node zone
   volumes:
   - name: nginx-data
     persistentVolumeClaim:
@@ -37,8 +37,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    demo: ebs-static
+    demo: ebs-dynamic     # ✅ Matches Pod label
   ports:
   - protocol: TCP
-    port: 80 #service-port
-    targetPort: 80 #container-port
+    port: 80
+    targetPort: 80
