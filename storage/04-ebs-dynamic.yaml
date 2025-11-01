@@ -10,7 +10,7 @@ spec:
     requests:
       storage: 4Gi
 ---
-piVersion: v1
+apiVersion: v1
 kind: Pod
 metadata:
   name: app
@@ -18,11 +18,13 @@ metadata:
     demo: ebs-dynamic
 spec:
   containers:
-  - name: nginx
+  - name: nginx  
     image: nginx
     volumeMounts:
     - name: nginx-data
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1d   # ✅ Matches AWS node zone
   volumes:
   - name: nginx-data
     persistentVolumeClaim:
