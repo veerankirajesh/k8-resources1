@@ -37,7 +37,7 @@ metadata:
 spec:
   type: LoadBalancer # Creates an AWS Elastic Load Balancer (ELB) automatically.
   selector:          # Matches Pods with label
-    demo: ebs-dynamic
+    demo: ebs-static
   ports:
   - protocol: TCP
     port: 80        # Service port
