@@ -11,7 +11,7 @@ spec:
       storage: 4Gi
 ---
 apiVersion: v1
-kind: Pod  # Pod
+kind: Pod
 metadata:
   name: app
   labels:
@@ -19,26 +19,26 @@ metadata:
 spec:
   containers:
   - name: nginx  
-    image: nginx   # Uses official NGINX image from Docker Hub.
+    image: nginx
     volumeMounts:
     - name: nginx-data
-      mountPath: /usr/share/nginx/html  # Mounts EBS volume into /usr/share/nginx/html (web root folder).
-  nodeSelector:   # Ensures Pod is scheduled on a node in same Availability Zone as EBS volume (e.g., us-east-1d)
-   zone: 1d
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1d    # ✅ Matches AWS node zone
   volumes:
   - name: nginx-data
-    persistentVolumeClaim: # Connects Pod to the PVC (ebs-static).
+    persistentVolumeClaim:
       claimName: ebs-dynamic
 ---
 apiVersion: v1
-kind: Service      #Exposes Pods internally or externally.# services in load balancer
+kind: Service
 metadata:
   name: ebs-dynamic
 spec:
-  type: LoadBalancer # Creates an AWS Elastic Load Balancer (ELB) automatically.
-  selector:          # Matches Pods with label
-    demo: ebs-static
+  type: LoadBalancer
+  selector:
+    demo: ebs-dynamic     # ✅ Matches Pod label
   ports:
   - protocol: TCP
-    port: 80        # Service port
-    targetPort: 80  # Pod container port                      
+    port: 80
+    targetPort: 80
