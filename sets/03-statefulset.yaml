@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
-        image: registry.k8s.io/nginx-slim:0.24
+        image: registry.k8s.io/nginx-slim:0.8
         ports:
         - containerPort: 80
           name: web
@@ -29,7 +29,7 @@ spec:
       name: www
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "my-storage-class"
+      storageClassName: "ebs-sc"
       resources:
         requests:
           storage: 1Gi
@@ -46,4 +46,4 @@ spec:
     name: web
   clusterIP: None
   selector:
-    app: nginx          
+    app: nginx
